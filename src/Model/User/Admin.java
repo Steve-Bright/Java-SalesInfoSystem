@@ -1,17 +1,17 @@
 package Model.User;
 
 public class Admin implements User_Abstract{
-    private int id;
+    private String id;
     private String name;
     private String password;
 
-    Admin(int id, String name, String password){
+    Admin(String id, String name, String password){
         this.id = id;
         this.name = name;
         this.password = password;
     }
     @Override
-    public int getId(){
+    public String getId(){
         return id;
     }
 

@@ -1,4 +1,4 @@
 package Model;
 
-public interface Order_Abstract {
+interface Order_Abstract {
 }

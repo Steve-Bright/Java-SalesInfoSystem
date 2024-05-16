@@ -1,7 +1,7 @@
 package Model.User;
 
 public interface User_Abstract {
-    int getId();
+    String getId();
     String getName();
     void setId();
 

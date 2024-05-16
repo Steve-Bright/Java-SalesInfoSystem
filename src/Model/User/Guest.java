@@ -2,11 +2,11 @@ package Model.User;
 
 public class Guest implements User_Abstract{
 
-    private int id;
+    private String id;
     private String name;
 
     @Override
-    public int getId(){
+    public String getId(){
         return id;
     }
 

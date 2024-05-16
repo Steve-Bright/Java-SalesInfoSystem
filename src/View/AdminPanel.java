@@ -1,44 +1,43 @@
 package View;
 
-import Model.User.Admin;
+import Model.User.AllUsersRepo;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class AdminPanel implements AdminPanel_Interface {
 
-    @Override
-    public int validateAdmin() {
 
+    @Override
+    public boolean validateAdmin() {
+        AllUsersRepo usersPool =  new AllUsersRepo();
 
         Scanner sc = new Scanner(System.in);
+        usersPool.loadData();
 
         System.out.print("Enter Admin User: ");
         String username = sc.nextLine();
-        System.out.print("Enter password");
+        System.out.print("Enter password: ");
         String password = sc.nextLine();
 
-        try{
-            FileReader fr = new FileReader("src/Model/User/users.csv");
-            BufferedReader br = new BufferedReader(fr);
-            String line;
-            while((line = br.readLine()) != null){
-                ArrayList<String> admins = new ArrayList<String>();
-                admins = (ArrayList<String>) Arrays.asList(line.split(","));
-
-                if (admins.get(0).equalsIgnoreCase(username) && admins.get(1).equals(password)){
-                    return 1;
-                }
+        for(int i = 0; i < usersPool.getAdmins().size(); i++){
+            String adminName = usersPool.getAdmins().get(i).getName();
+            String adminPassword = usersPool.getAdmins().get(i).getPassword();
+            if(username.equals(adminName) && password.equals(adminPassword)){
+                return true;
             }
-            return 0;
-        }catch(IOException e){
-            System.out.println("users.csv not working");
-            return -1;
         }
+        return false;
     }
+
+    public int displayOptions(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to Admin Panel!");
+        System.out.print("1. Add product info" +
+                "\n2. View product info" +
+                "\n3. Delete product info"+
+                "\nYour Input: ");
+        return sc.nextInt();
+
+    }
+
 }

@@ -1,16 +1,17 @@
 package Model;
 
 public class Product implements Product_Abstract{
-    private int id;
+    private String id;
     private String name;
     private int price;
 
-    Product(int id, String name){
+    Product(String id, String name, int price){
         this.id = id;
         this.name = name;
+        this.price = price;
     }
     @Override
-    public int getId(){
+    public String getId(){
         return id;
     };
     @Override

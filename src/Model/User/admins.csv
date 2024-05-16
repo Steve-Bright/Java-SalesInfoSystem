@@ -1,2 +1,4 @@
-adminid,adminuser,password
+id,name,password
 a01,admin,admin123
+a02,swamhtet,swamhtet123
+a03,kaungmyat,kaungmyat123

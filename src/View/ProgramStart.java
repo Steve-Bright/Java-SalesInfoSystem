@@ -1,10 +1,15 @@
 package View;
 
 import java.util.Scanner;
+import Model.AllProductsRepo;
+import Controller.Products_Controller;
 
 public class ProgramStart {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        AllProductsRepo products = new AllProductsRepo();
+        products.loadProducts();
+        Products_Controller productsController = new Products_Controller();
 
         System.out.println("Sales Information System" +
                 "\n ......................");
@@ -18,15 +23,31 @@ public class ProgramStart {
         switch(input){
             case 1:
                 AdminPanel admin = new AdminPanel();
-                int adminResult = admin.validateAdmin();
-                if(adminResult == 1)
-                    System.out.println("You are admin");
-                else if(adminResult == 0)
-                    System.out.println("You are not admin");
-                else{
-                    System.out.println("Something went wrong");
+                boolean adminResult = false;
+
+                while(!adminResult){ // while admin result is false,
+                    adminResult = admin.validateAdmin();
+                    if(adminResult)
+                        System.out.println("You are admin");
+                    else{
+                        System.out.println("You are not admin");
+                    }
+                }
+                int value = admin.displayOptions();
+                if(value == 1){
+                    System.out.println("You click add product info");
+                }else if(value == 2){
+                    System.out.println("You click view product info");
+                    productsController.viewProducts();
+
+                }else if(value == 3){
+                    System.out.println("You click delete product info");
+                }else{
+                    System.out.println("idk what you entered :)");
                 }
                 break;
+
+            case 2:
             default:
                 System.out.println("Wrong input");
 

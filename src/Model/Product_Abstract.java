@@ -1,7 +1,7 @@
 package Model;
 
-public interface Product_Abstract {
-    int getId();
+interface Product_Abstract {
+    String getId();
     String getName();
     int getPrice();
 }

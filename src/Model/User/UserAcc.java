@@ -1,12 +1,12 @@
 package Model.User;
 
 public class UserAcc implements User_Abstract{
-    private int id;
+    private String id;
     private String name;
-    private int password;
 
+    private String password;
     @Override
-    public int getId(){
+    public String getId(){
         return id;
     }
 
@@ -15,7 +15,7 @@ public class UserAcc implements User_Abstract{
         return name;
     }
 
-    public int getPassword(){
+    public String getPassword(){
         return password;
     }
 
