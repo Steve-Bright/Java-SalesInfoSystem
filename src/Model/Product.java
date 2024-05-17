@@ -5,7 +5,7 @@ public class Product implements Product_Abstract{
     private String name;
     private int price;
 
-    Product(String id, String name, int price){
+    public Product(String id, String name, int price){
         this.id = id;
         this.name = name;
         this.price = price;

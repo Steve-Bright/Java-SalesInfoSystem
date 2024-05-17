@@ -21,16 +21,46 @@ public class Products_Controller implements Products_Controller_Interface{
     }
 
     @Override
-    public void addProduct(Product product) throws IOException {
+    public void addProduct(Product product, ArrayList<Product> products) throws IOException {
         String filePath = "src/Model/products.csv";
-        BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
+        String productId = product.getId();
+        String productName = product.getName();
+        int productPrice = product.getPrice();
+        bw.newLine();
+        bw.write(productId+ ","+ productName +","+productPrice);
 
-        bw.write("");
+        bw.close();
     }
 
     @Override
-    public void deleteProduct(Product product){
+    public void deleteProduct(String productId, ArrayList<Product> products) throws IOException {
+        boolean idFound = false;
+        for(Product eachProduct: products){
+            if(eachProduct.getId().equalsIgnoreCase(productId)){
+                products.remove(eachProduct);
+                reloadProducts(products);
+                idFound = true;
+                break;
+            }
+        }
+        if(!idFound){
+            System.out.println("Id not found!");
+        }
 
+
+    }
+    private void reloadProducts(ArrayList<Product> products) throws IOException {
+        String filePath = "src/Model/products.csv";
+        BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
+        bw.write("Name,Item,Price");
+        bw.newLine();
+
+        for(Product eachProduct: products){
+            bw.write(eachProduct.getId()+","+eachProduct.getName()+","+eachProduct.getPrice());
+            bw.newLine();
+        }
+        bw.close();
+        System.out.println("Product Deleted! ");
     }
 }

@@ -35,6 +35,7 @@ public class AdminPanel implements AdminPanel_Interface {
         System.out.print("1. Add product info" +
                 "\n2. View product info" +
                 "\n3. Delete product info"+
+                "\n4. Exit from Admin"+
                 "\nYour Input: ");
         return sc.nextInt();
 
