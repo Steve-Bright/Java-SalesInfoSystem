@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class AllUsersRepo {
 
     private ArrayList<Admin> admins = new ArrayList<Admin>();
+    private ArrayList<UserAcc> users = new ArrayList<UserAcc>();
 
     public void loadData(){
         importAdmins();
@@ -42,7 +43,7 @@ public class AllUsersRepo {
             String line;
             while((line = userBr.readLine()) != null){
                 String[] usersArray = line.split(",");
-                admins.add(new Admin(usersArray[0], usersArray[1], usersArray[2]));
+                users.add(new UserAcc(usersArray[0], usersArray[1], usersArray[2]));
             }
         }
         catch(FileNotFoundException e){
@@ -55,5 +56,8 @@ public class AllUsersRepo {
 
     public ArrayList<Admin> getAdmins(){
         return admins;
+    }
+    public ArrayList<UserAcc> getUsers(){
+        return users;
     }
 }

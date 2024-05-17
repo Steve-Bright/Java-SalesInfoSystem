@@ -105,6 +105,17 @@ public class ProgramStart {
                     break;
 
                 case 2:
+                    ClientSystem client = new ClientSystem();
+                    System.out.println("Do you have user account? :");
+                    String ans = sc.nextLine();
+
+                    if(ans.equalsIgnoreCase("yes") || ans.equalsIgnoreCase("y")){
+                        boolean result = client.validateUser();
+                        if (result == true){
+                            System.out.println("User is logged in!");
+                        }
+                    }
+                    break;
                 case 3:
                     System.out.println("Program is exiting...");
                     System.exit(0);

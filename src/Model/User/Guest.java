@@ -15,8 +15,4 @@ public class Guest implements User_Abstract{
         return name;
     }
 
-    @Override
-    public void setId(){
-//        nothing done here yet.
-    }
 }

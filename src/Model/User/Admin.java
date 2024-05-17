@@ -24,9 +24,4 @@ public class Admin implements User_Abstract{
         return password;
     }
 
-    @Override
-    public void setId(){
-
-    }
-
 }

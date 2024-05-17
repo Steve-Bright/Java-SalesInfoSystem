@@ -5,6 +5,12 @@ public class UserAcc implements User_Abstract{
     private String name;
 
     private String password;
+
+    public UserAcc(String id, String name, String password){
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
     @Override
     public String getId(){
         return id;
@@ -19,8 +25,4 @@ public class UserAcc implements User_Abstract{
         return password;
     }
 
-    @Override
-    public void setId(){
-        //set method not done yet.
-    }
 }
