@@ -37,9 +37,7 @@ public class ProgramStart {
                 if(value == 1){
                     System.out.println("You click add product info");
                 }else if(value == 2){
-                    System.out.println("You click view product info");
-                    productsController.viewProducts();
-
+                    productsController.viewProducts(products.getProducts());
                 }else if(value == 3){
                     System.out.println("You click delete product info");
                 }else{

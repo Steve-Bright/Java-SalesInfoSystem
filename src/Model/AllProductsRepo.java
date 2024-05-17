@@ -15,11 +15,12 @@ public class AllProductsRepo {
         try{
             FileReader productsSrc = new FileReader("src/Model/products.csv");
             BufferedReader productBr = new BufferedReader(productsSrc);
+            productBr.readLine(); //skips the header from the csv file
             String line;
             while((line = productBr.readLine()) != null){
                 String[] productsArray = line.split(",");
-//                int price = Integer.parseInt(productsArray[2]);
-                products.add(new Product(productsArray[0], productsArray[1], 2000));
+                int price = Integer.parseInt(productsArray[2]);
+                products.add(new Product(productsArray[0], productsArray[1], price));
             }
         }
         catch(FileNotFoundException e){
