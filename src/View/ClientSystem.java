@@ -1,7 +1,9 @@
 package View;
 
 import  Model.User.AllUsersRepo;
+import Model.Product;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ClientSystem implements ClientSystem_Interface{
@@ -24,5 +26,10 @@ public class ClientSystem implements ClientSystem_Interface{
             }
         }
         return false;
+    }
+
+    @Override
+    public void showAvailableProducts(ArrayList<Product> products){
+
     }
 }

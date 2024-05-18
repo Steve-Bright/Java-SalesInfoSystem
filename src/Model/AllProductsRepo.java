@@ -20,7 +20,9 @@ public class AllProductsRepo {
             while((line = productBr.readLine()) != null){
                 String[] productsArray = line.split(",");
                 int price = Integer.parseInt(productsArray[2]);
-                products.add(new Product(productsArray[0], productsArray[1], price));
+                boolean isAvailable = Boolean.parseBoolean(productsArray[3]);
+                int stock = Integer.parseInt(productsArray[4]);
+                products.add(new Product(productsArray[0], productsArray[1], price, isAvailable, stock));
             }
         }
         catch(FileNotFoundException e){

@@ -52,8 +52,12 @@ public class ProgramStart {
                                 System.out.print("Product Price: ");
                                 int productPrice = sc.nextInt();
                                 sc.nextLine();
+                                System.out.print("Product Stock: ");
+                                int stock = sc.nextInt();
+                                sc.nextLine();
 
-                                Product product = new Product(productId, productName, productPrice);
+
+                                Product product = new Product(productId, productName, productPrice, true, stock);
                                 productsController.addProduct(product, products.getProducts());
                                 products.loadProducts();
 
@@ -74,6 +78,28 @@ public class ProgramStart {
                         }else if(value == 2){
                             productsController.viewProducts(products.getProducts());
                         }else if(value == 3){
+                            boolean productEditAgain = true;
+                            while(productEditAgain) {
+                                System.out.print("Enter the product id to edit: ");
+                                String productId = sc.nextLine();
+
+                                productsController.editProduct(productId, products.getProducts());
+
+                                boolean repeatAnother = true;
+                                while (repeatAnother) {
+                                    System.out.print("Edit another item again? :");
+                                    String ans = sc.nextLine();
+                                    if (ans.equalsIgnoreCase("no") || ans.equalsIgnoreCase("n")) {
+                                        repeatAnother = false;
+                                        productEditAgain = false;
+                                    } else if (ans.equalsIgnoreCase("yes") || ans.equalsIgnoreCase("y")) {
+                                        repeatAnother = false;
+                                    } else {
+                                        System.out.println("Wrong input?");
+                                    }
+                                }
+                            }
+                        } else if(value == 4){
                             boolean productDeleteAgain = true;
                             while(productDeleteAgain){
                                 System.out.print("Enter the product id to delete: ");
@@ -83,7 +109,7 @@ public class ProgramStart {
 
                                 boolean repeatAnother = true;
                                 while(repeatAnother){
-                                    System.out.print("Delete another item again? :");
+                                    System.out.print("Edit another item again? :");
                                     String ans = sc.nextLine();
                                     if(ans.equalsIgnoreCase("no") || ans.equalsIgnoreCase("n")){
                                         repeatAnother = false;
@@ -96,7 +122,7 @@ public class ProgramStart {
                                 }
 
                             }
-                        }else if(value == 4){
+                        }else if(value == 5){
                             adminRun = false;
                         }else{
                             System.out.println("idk what you entered :)");
