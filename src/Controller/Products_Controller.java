@@ -40,32 +40,33 @@ public class Products_Controller implements Products_Controller_Interface{
         boolean idFound = false;
         for(Product eachProduct: products){
             if(eachProduct.getId().equalsIgnoreCase(productId)){
+                System.out.println("Press Enter to skip or save the value you want to edit. ");
 
-                System.out.print("Product Id: " + eachProduct.getId());
+                System.out.print("Product Id: " + eachProduct.getId() + " : ");
                 String newProductId = sc.nextLine();
                 if(!newProductId.isEmpty()){
                     eachProduct.setId(newProductId);
                 }
 
-                System.out.print("Product Name: " + eachProduct.getName());
+                System.out.print("Product Name: " + eachProduct.getName() + " : ");
                 String newProductName = sc.nextLine();
                 if(!newProductName.isEmpty()){
                     eachProduct.setName(newProductName);
                 }
 
-                System.out.print("Product Price: " + eachProduct.getPrice());
+                System.out.print("Product Price: " + eachProduct.getPrice()  + " : ");
                 String newProductPrice = sc.nextLine();
                 if(!newProductPrice.isEmpty()){
                     eachProduct.setPrice(Integer.parseInt(newProductPrice));
                 }
 
-                System.out.print("Product Availablity: ");
+                System.out.print("Product Availablity: " + eachProduct.isAvailable() + " : ");
                 String available = sc.nextLine();
                 if(!available.isEmpty()){
                     eachProduct.setAvailability(Boolean.parseBoolean(available));
                 }
 
-                System.out.print("Product Stock: " + eachProduct.getStock());
+                System.out.print("Product Stock: " + eachProduct.getStock()  + " : ");
                 String newStock = sc.nextLine();
                 if(!newStock.isEmpty()){
                     eachProduct.setStock(Integer.parseInt(newStock));

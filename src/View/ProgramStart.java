@@ -132,15 +132,41 @@ public class ProgramStart {
 
                 case 2:
                     ClientSystem client = new ClientSystem();
-                    System.out.println("Do you have user account? :");
+                    boolean userAcc = false;
+                    System.out.print("Do you have user account? :");
                     String ans = sc.nextLine();
 
                     if(ans.equalsIgnoreCase("yes") || ans.equalsIgnoreCase("y")){
                         boolean result = client.validateUser();
-                        if (result == true){
+                        if (result){
+                            userAcc = true;
                             System.out.println("User is logged in!");
                         }
                     }
+                    products.loadProducts();
+                    client.showAvailableProducts(products.getProducts());
+                    int userInput = client.displayOptions();
+                    if(userInput == 1){
+                        client.viewItemOption(products.getProducts());
+                    }else if(userInput == 2){
+//                      //client sort
+                    }else if(userInput == 3){
+                        //Search product
+                    }else if(userInput == 4){
+                        //exit the client system
+                    }else if(userInput == 5){
+
+                    }else if(userInput == 6){
+
+                    }else{
+
+                    }
+                    //view , sort or search
+                    //if view --> detail product
+                    //in detail, choose buy -> how much
+                    //check stock, buy
+                    //if user already logged in, no steps further,
+
                     break;
                 case 3:
                     System.out.println("Program is exiting...");
