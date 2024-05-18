@@ -12,6 +12,7 @@ public class AllProductsRepo {
     private ArrayList<Product> products = new ArrayList<>();
 
     public void loadProducts(){
+        products.clear();
         try{
             FileReader productsSrc = new FileReader("src/Model/products.csv");
             BufferedReader productBr = new BufferedReader(productsSrc);

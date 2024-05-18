@@ -25,7 +25,18 @@ public class Orders_Controller implements Orders_Controller_Interface{
     }
 
     @Override
+    public void viewAnOrder(Order order){
+        System.out.println("Recepit Details");
+        System.out.println("====================");
+        System.out.println("Order Id: "+ order.getOrderId());
+        System.out.println("Bought Product "+ order.getOrderProduct().getName());
+        System.out.println("Quantity: "+ order.getQty());
+        System.out.println("Total Price"+ order.getTotal());
+    }
+    @Override
     public void viewOrders(ArrayList<Order> orders) {
 
     }
+
+
 }

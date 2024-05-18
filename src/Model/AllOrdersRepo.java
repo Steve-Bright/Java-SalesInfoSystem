@@ -11,6 +11,7 @@ public class AllOrdersRepo {
     public void loadOrders(){
         try{
             AllProductsRepo products =  new AllProductsRepo();
+            products.loadProducts();
             FileReader ordersSrc = new FileReader("src/Model/orders.csv");
             BufferedReader ordersBr = new BufferedReader(ordersSrc);
             ordersBr.readLine(); //skips the header from the csv file

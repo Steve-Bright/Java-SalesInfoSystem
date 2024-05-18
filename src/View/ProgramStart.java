@@ -2,6 +2,8 @@ package View;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import Model.AllOrdersRepo;
 import Model.AllProductsRepo;
 import Controller.Products_Controller;
 import Model.Product;
@@ -10,6 +12,7 @@ public class ProgramStart {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         AllProductsRepo products = new AllProductsRepo();
+        AllOrdersRepo orders = new AllOrdersRepo();
         products.loadProducts();
         Products_Controller productsController = new Products_Controller();
 
@@ -28,6 +31,8 @@ public class ProgramStart {
 
             switch(input){
                 case 1:
+                    //ADMIN
+
                     AdminPanel admin = new AdminPanel();
                     boolean adminResult = false;
 
@@ -133,33 +138,80 @@ public class ProgramStart {
                 case 2:
                     ClientSystem client = new ClientSystem();
                     boolean userAcc = false;
-                    System.out.print("Do you have user account? :");
-                    String ans = sc.nextLine();
+                    boolean validAcc = false;
 
-                    if(ans.equalsIgnoreCase("yes") || ans.equalsIgnoreCase("y")){
-                        boolean result = client.validateUser();
-                        if (result){
-                            userAcc = true;
-                            System.out.println("User is logged in!");
+                    boolean userAccQuestion = true;
+                    while(userAccQuestion){
+                        System.out.print("Do you have user account? :");
+                        String ans = sc.nextLine();
+
+                        if(ans.equalsIgnoreCase("yes") || ans.equalsIgnoreCase("y")){
+                            while(!validAcc){
+                                boolean result = client.validateUser();
+                                if (result){
+                                    userAcc = true;
+                                    orders.loadOrders();
+                                    System.out.println("User is logged in!");
+                                    validAcc = true;
+                                }else{
+                                    System.out.println("Wrong username or password");
+                                }
+                            }
+                            userAccQuestion = false;
+                        }else if(ans.equalsIgnoreCase("no") || ans.equalsIgnoreCase("n")){
+                            System.out.println("Logged in as guest user! You can view the item but not buy them!");
+                            userAccQuestion = false;
+                        }else{
+                            System.out.println("wrong input?");
                         }
                     }
-                    products.loadProducts();
-                    client.showAvailableProducts(products.getProducts());
-                    int userInput = client.displayOptions();
-                    if(userInput == 1){
-                        client.viewItemOption(products.getProducts());
-                    }else if(userInput == 2){
+
+                    boolean clientSystem = true;
+                    while(clientSystem){
+                        products.loadProducts();
+                        client.showAvailableProducts(products.getProducts());
+                        int userInput = client.displayOptions();
+                        if(userInput == 1){
+                            client.viewItemOption(products.getProducts(), orders.getOrders());
+                        }else if(userInput == 2){
 //                      //client sort
-                    }else if(userInput == 3){
-                        //Search product
-                    }else if(userInput == 4){
-                        //exit the client system
-                    }else if(userInput == 5){
+                        }else if(userInput == 3){
+                            //Search product
+                        }else if(userInput == 4){
+                            boolean productFound = false;
+                            while(!productFound){
+                                System.out.print("Enter product Item id or name you want to buy: ");
+                                String item = sc.nextLine();
+                                for(Product product: products.getProducts()){
+                                    if(product.getId().equals(item) || product.getName().equals(item)){
+                                        client.buyItem(product, products.getProducts(), orders.getOrders());
+                                        productFound = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }else if(userInput == 5){
+                            if(userAcc){
+                                client.displayOrders(orders.getOrders());
+                            }else{
+                                while(!validAcc){
+                                    boolean result = client.validateUser();
+                                    if (result){
+                                        userAcc = true;
+                                        orders.loadOrders();
+                                        System.out.println("User is logged in!");
+                                        client.displayOrders(orders.getOrders());
+                                        validAcc = true;
+                                    }else{
+                                        System.out.println("Wrong username or password");
+                                    }
+                                }
+                            }
+                        }else if(userInput == 6){
+                            clientSystem = false;
+                        }else{
 
-                    }else if(userInput == 6){
-
-                    }else{
-
+                        }
                     }
                     //view , sort or search
                     //if view --> detail product

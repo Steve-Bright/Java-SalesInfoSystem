@@ -101,6 +101,21 @@ public class Products_Controller implements Products_Controller_Interface{
 
 
     }
+
+    @Override
+    public void updateStock(int stock, Product product, ArrayList<Product> products) throws IOException {
+        for(Product eachProduct : products){
+            if(eachProduct.getId().equals(product.getId())) {
+                int remaining = eachProduct.getStock() - stock;
+                if(remaining == 0){
+                    eachProduct.setAvailability(false);
+                }
+                eachProduct.setStock(remaining);
+                break;
+            }
+        }
+        reloadProducts(products);
+    }
     private void reloadProducts(ArrayList<Product> products) throws IOException {
         String filePath = "src/Model/products.csv";
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));

@@ -12,4 +12,6 @@ interface Products_Controller_Interface {
 
     void editProduct(String productId, ArrayList<Product> products) throws IOException;
     void deleteProduct(String productId, ArrayList<Product> products) throws IOException;
+
+    void updateStock(int stock, Product product, ArrayList<Product> products) throws IOException;
 }
