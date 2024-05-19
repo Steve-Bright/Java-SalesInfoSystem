@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class AllUsersRepo {
 
-    private ArrayList<Admin> admins = new ArrayList<Admin>();
-    private ArrayList<UserAcc> users = new ArrayList<UserAcc>();
+    private ArrayList<Admin> admins = new ArrayList<>();
+    private ArrayList<UserAcc> users = new ArrayList<>();
 
     public void loadData(){
         importAdmins();

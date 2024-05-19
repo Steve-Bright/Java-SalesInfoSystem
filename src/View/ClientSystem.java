@@ -50,10 +50,9 @@ public class ClientSystem implements ClientSystem_Interface{
         Scanner sc = new Scanner(System.in);
         System.out.print("1. View a specific Item" +
                 "\n2. Sort Products" +
-                "\n3. Search a Product" +
-                "\n4. Buy a Product" +
-                "\n5. Order History" +
-                "\n6. Exit" +
+                "\n3. Buy a Product" +
+                "\n4. Order History" +
+                "\n5. Exit" +
                 "\n Your Input: ");
         return sc.nextInt();
 
@@ -63,12 +62,14 @@ public class ClientSystem implements ClientSystem_Interface{
     public void viewItemOption(ArrayList<Product> products, ArrayList<Order> orders) throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean product = false;
-        while(product == false){
+        boolean productFound = false;
+        while(!product){
             System.out.print("Enter the product id or name to view details on: ");
             String viewInput = sc.nextLine();
 
             for(Product eachProduct : products){
                 if(viewInput.equalsIgnoreCase(eachProduct.getName()) || viewInput.equals(eachProduct.getId())){
+                    productFound = true;
                     System.out.println("Viewing Product Details");
                     System.out.println("Product Id: "+ eachProduct.getId());
                     System.out.println("Product Name: "+ eachProduct.getName());
@@ -85,6 +86,9 @@ public class ClientSystem implements ClientSystem_Interface{
                         break;
                     }
                 }
+            }
+            if(!productFound){
+                System.out.println("Product not Found");
             }
         }
 

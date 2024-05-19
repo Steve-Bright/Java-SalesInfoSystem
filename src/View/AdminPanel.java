@@ -34,7 +34,7 @@ public class AdminPanel implements AdminPanel_Interface {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Admin Panel!");
         System.out.print("1. Add product info" +
-                "\n2. View product info" +
+                "\n2. View products" +
                 "\n3. Edit product info" +
                 "\n4. Delete product info"+
                 "\n5. Exit from Admin"+

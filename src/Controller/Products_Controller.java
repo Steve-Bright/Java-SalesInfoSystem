@@ -116,6 +116,80 @@ public class Products_Controller implements Products_Controller_Interface{
         }
         reloadProducts(products);
     }
+
+    @Override
+    public ArrayList<Product> sortProductsPrice(ArrayList<Product> products, boolean ascending) {
+        if(ascending){
+            for(int i = 1; i < products.size() ; i++){
+                int v = products.get(i).getPrice();
+                int j = i - 1;
+                while(j >= 0 && products.get(j).getPrice() > v){
+                    Product temp = products.get(j+1);
+                    products.set(j+1, products.get(j));
+
+                    products.set(j, temp);
+                    j = j - 1;
+                }
+            }
+        }else{
+            for(int i = 1; i < products.size() ; i++){
+                int v = products.get(i).getPrice();
+                int j = i - 1;
+                while(j >= 0 && products.get(j).getPrice() < v){
+                    Product temp = products.get(j+1);
+                    products.set(j+1, products.get(j));
+
+                    products.set(j, temp);
+                    j = j - 1;
+                }
+            }
+        }
+
+        return products;
+    }
+
+    @Override
+    public ArrayList<Product> sortProductsStock(ArrayList<Product> products, boolean ascending) {
+        if(ascending){
+            for(int i = 1; i < products.size() ; i++){
+                int v = products.get(i).getStock();
+                int j = i - 1;
+                while(j >= 0 && products.get(j).getStock() > v){
+                    Product temp = products.get(j+1);
+                    products.set(j+1, products.get(j));
+
+                    products.set(j, temp);
+                    j = j - 1;
+                }
+            }
+        }else{
+            for(int i = 1; i < products.size() ; i++){
+                int v = products.get(i).getStock();
+                int j = i - 1;
+                while(j >= 0 && products.get(j).getStock() < v){
+                    Product temp = products.get(j+1);
+                    products.set(j+1, products.get(j));
+
+                    products.set(j, temp);
+                    j = j - 1;
+                }
+            }
+        }
+
+        return products;
+    }
+
+    @Override
+    public int searchProduct(String product, ArrayList<Product> products) {
+        for(Product eachProduct : products){
+            if(eachProduct.getId().equals(product) || eachProduct.getName().equalsIgnoreCase(product)) {
+               return products.indexOf(eachProduct);
+            }
+        }
+        return -1;
+    }
+
+
     private void reloadProducts(ArrayList<Product> products) throws IOException {
         String filePath = "src/Model/products.csv";
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));

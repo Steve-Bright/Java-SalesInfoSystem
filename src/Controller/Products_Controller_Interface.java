@@ -14,4 +14,10 @@ interface Products_Controller_Interface {
     void deleteProduct(String productId, ArrayList<Product> products) throws IOException;
 
     void updateStock(int stock, Product product, ArrayList<Product> products) throws IOException;
+
+    ArrayList<Product> sortProductsPrice(ArrayList<Product> products, boolean ascending);
+
+    ArrayList<Product> sortProductsStock(ArrayList<Product> products, boolean ascending);
+
+    int searchProduct(String value, ArrayList<Product> products);
 }
